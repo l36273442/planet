@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>提升算力</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <link rel="stylesheet" href="../css/reset.css">
+    <!--[if lt IE 9]>
+    <script src="../js/html5.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="../js/zepto.min.js"></script>
+    <script>
+        //移动适配
+        var desW = 750;
+        var winW = document.documentElement.clientWidth;
+        document.documentElement.style.fontSize = winW/desW*100+"px";
+    </script>
+    <style>
+      html,body{
+            width: 100%;
+            height: 100%;
+        }
+       .background{
+          /* overflow: auto;*/
+            height: 100%;
+            width: 100%;
+            background: url("../images/秘籍@2x.png") no-repeat;
+            background-size: 100% 100%;
+        }
+        .header{
+            height: 1.58rem;
+            color: #fff;
+        }
+        .back{
+            float: left;
+            padding: 0 0.29rem;
+            margin-top: 0.63rem;
+            font-size: 0.4rem;
+            color: #fff;
+        }
+        .focus{
+            float: left;
+            font-size: 0.28rem;
+            margin: 0.68rem 0 0 2.24rem;
+        }
+        .method{
+            overflow: hidden;
+            margin: 0.9rem 0.8rem 0.4rem;
+        }
+        .mode{
+            float: left;
+            width: 1.7rem;
+            height: 1.7rem;
+            border-radius: 5px;
+            margin: 0.35rem 0.26rem 0 0;
+        }
+        /*--------*/
+        .blue{
+            background: #ebf3fe;
+        }
+        .gray{
+            background: #f3f3f3;
+        }
+        .bluetext{
+            color: #339ce0;
+        }
+        .graytext{
+            color: #919ba5;
+        }
+        /*------ */
+        .invite{
+            text-align: center;
+            line-height: 0.6rem;
+            font-size: 0.22rem;
+            color: #919ba4;
+        }
+        .image{
+            width: 0.62rem;
+            height: 0.56rem;
+            margin-left: 0.54rem;
+        }
+        .image img{
+           width: 100%;
+            height: 100%;
+            background-size: 100% 100%;
+        }
+        .plus{
+            font-weight: 600;
+            font-size: 0.22rem;
+            text-align: center;
+            line-height: 0.5rem;
+        }
+        .semiCircle{
+            float: left;
+            width: 0.6rem;
+            height: 0.6rem;
+            background: #f5f5f5;
+            border-radius: 50%;
+            margin-left: 0.2rem;
+        }
+        .get{
+            clear: both;
+            text-align: center;
+            line-height: 0.5rem;
+            font-size: 16px;
+            margin-bottom: 0.28rem;
+        }
+        .mar-lef{
+            margin-left: 0.94rem;
+        }
+        .mar-lef h5{
+            font-size: 0.24rem;
+            line-height: 0.38rem;
+            color: #909ba4;
+        }
+        .mar-lef p{
+            line-height: 0.34rem;
+            font-size: 0.24rem;
+            color: #909ba4;
+        }
+
+    </style>
+</head>
+<body>
+<div class="background">
+    <div class="header">
+        <a href="javascript:history.go(-1)" class="back"> < </a>
+        <span class="focus">提升算力</span>
+    </div>
+    <ul class="method">
+        <li class="mode" id="friend">
+            <p class="invite">邀请好友</p>
+            <div class="image"><img class="myfriend"></div>
+            <p class="plus" id="invite">算力+10</p>
+        </li>
+        <li class="mode" id="login">
+            <p class="invite">每日登录 </p>
+            <div class="image"><img class="daily"></div>
+            <p class="plus" id="is_login">算力+1</p>
+        </li>
+        <!--<li class="mode blue" id="autonym">
+            <p class="invite">实名认证</p>
+            <div class="image"><img" class="name"></div>
+            <p class="plus" id="verified">算力+10</p>
+        </li>-->
+        <li class="mode" id="attention">
+            <p class="invite">关注微信</p>
+            <div class="image"><img class="wechat"></div>
+            <p class="plus" id="follow_wechat">算力+10</p>
+        </li>
+        <li class="mode" id="address">
+            <p class="invite">填写ETH地址</p>
+            <div class="image"><img class="eth"></div>
+            <p class="plus" id="hashrate">算力+10</p>
+        </li>
+    </ul>
+    <span class="semiCircle"></span>
+    <span class="semiCircle" style="float: right; margin-right: 0.2rem;"></span>
+
+    <p class="get">如何获取算力?</p>
+    <div class="mar-lef">
+        <h5>1.邀请好友</h5>
+        <p>每邀请一位好友，算力+10</p>
+        <h5>2.每日登录</h5>
+        <p>每日登录，算力+1</p>
+        <h5>3.实名认证</h5>
+        <p>用户实名认证，算力+10</p>
+        <h5>4.关注公众号</h5>
+        <p>关注 "MineBit麦恩比特" 公众号，算力+10</p>
+        <h5>5.填写ETH地址</h5>
+        <p>用户填写ETH地址，算力+10</p>
+    </div>
+</div>
+</body>
+</html>
+<script>
+
+    // 判断是否是浏览器
+    var ua = window.navigator.userAgent.toLowerCase();
+    if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+       // $('.header').hide();
+        $('.back').hide();
+        $('.focus').hide();
+        $('.method').css('marginTop','0');
+    }
+
+    // 获取数据
+    (function () {
+        $.ajax({
+            type: 'GET',
+            url: '/task/gettaskstatus',
+            data:{},
+            dataType: 'json',
+            success: function(data){
+                console.log(data);
+                if(data.ret =='1'){  // 成功
+                    if(data.data.is_eth =='1'){  //ETH
+                        $('#address').addClass('gray');
+                        $('.eth').attr('src','../images/ETH@2x.png');
+                        $('#hashrate').addClass('graytext');
+                    }else{
+                        $('#address').addClass('blue');
+                        $('.eth').attr('src','../images/ETH拷贝@2x.png');
+                        $('#hashrate').addClass('bluetext');
+                    }
+                    if(data.data.is_follow_wechat =='1'){ // 关注微信
+                        $('#attention').addClass('gray');
+                        $('.wechat').attr('src','../images/微信@2x.png');
+                        $('#follow_wechat').addClass('graytext');
+                    }else{
+                        $('#attention').addClass('blue');
+                        $('.wechat').attr('src','../images/微信拷贝@2x.png');
+                        $('#follow_wechat').addClass('bluetext');
+                    }
+                    if(data.data.is_login =='1'){  // 每日登录
+                        $('#login').addClass('gray');
+                        $('.daily').attr('src','../images/个人中心算力@2x.png');
+                        $('#is_login').addClass('graytext');
+                    }else{
+                        $('#login').addClass('blue');
+                        $('.daily').attr('src','../images/算力小@2x.png');
+                        $('#is_login').addClass('bluetext');
+                    }
+                    if(data.data.is_invite =='1'){  // 邀请好友
+                        $('#friend').addClass('gray');
+                        $('.myfriend').attr('src','../images/我的好友@2x.png');
+                        $('#invite').addClass('graytext');
+                    }else{
+                        $('#friend').addClass('blue');
+                        $('.myfriend').attr('src','../images/我的好友拷贝@2x.png');
+                        $('#invite').addClass('bluetext');
+                    }
+                    if(data.data.is_verified =='1'){  // 实名认证
+                        $('#autonym').addClass('gray');
+                        $('.name').attr('src','../images/账户资料@2x.png');
+                        $('#verified').addClass('graytext');
+                    }else{
+                        $('#autonym').addClass('blue');
+                        $('.name').attr('src','../images/账户资料拷贝@2x.png');
+                        $('#verified').addClass('bluetext');
+                    }
+                }else{
+                    alert(data.msg);
+                }
+            },
+            error: function(data){
+                alert('接口发送失败！')
+            }
+        })
+    })();
+
+
+    // 邀请好友
+    $('#friend').on('click',function () {
+        window.location.href="./share.html";
+    });
+   /* // 每日登录
+    $('#login').on('click',function () {
+        window.location.href="./index.html";
+    });*/
+    // 实名认证
+    $('#autonym').on('click',function () {
+        window.location.href="./attestation.html";
+    });
+    // 关注微信
+    $('#attention').on('click',function () {
+        window.location.href="./wechat.html";
+    });
+    // 填写ETH地址
+    $('#address').on('click',function () {
+        window.location.href="./address.html";
+    });
+</script>

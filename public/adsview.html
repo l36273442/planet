@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <link rel="stylesheet" href="../css/reset.css">
+    <!--[if lt IE 9]>
+    <script src="../js/html5.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="../js/zepto.min.js"></script>
+    <script>
+        //移动适配
+        var desW = 640;
+        var winW = document.documentElement.clientWidth;
+        document.documentElement.style.fontSize = winW/desW*100+"px";
+    </script>
+    <style>
+        html,body,.background{
+            height: 100%;
+            width: 100%;
+            background: url("../images/秘籍@2x.png") no-repeat;
+            background-size: 100% 100%;
+        }
+        .header{
+            height: 1.3rem;
+            line-height: 1.3rem;
+            color: #fff;
+            font-size: 18px;
+            text-align: center;
+        }
+        .textWrap{
+            width: 80%;
+            height: 80%;
+            margin: 5% 10%;
+
+        }
+        .title{
+            font-size: 20px;
+            color: #919ba4;
+            font-weight: 600;
+            line-height: 0.7rem;
+        }
+        .content,.bold{
+            font-size: 18px;
+            color: #909aa3;
+            line-height: 0.4rem;
+        }
+        .bold{
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+<div class="background">
+	<div class="header"></div>
+	<div class="textWrap">
+        <span class="content">
+
+        </span>
+	</div>
+</div>
+
+<script>
+function getUrlParam(name) {
+ var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+ var r = window.location.search.substr(1).match(reg); //匹配目标参数
+ if (r != null) return unescape(r[2]); return null; //返回参数值
+}
+    (function () {
+        let id = getUrlParam("id");
+	if( !id ){
+	    return false;
+	}
+        $.ajax({
+            type: 'GET',
+            url: '/ads/getads?id='+id,
+            data: {},
+            dataType: 'json',
+            success: function(data){
+                //console.log(data.data);
+                if(data){
+                    if(data.ret=='1'){
+                            $('.header').text(data.data.title);
+                            $('.content').text(data.data.content);
+                    }else{
+                        alert(data.msg)
+                    }
+                }
+            },
+            error: function(data){
+                alert('接口发送失败！')
+            }
+        })
+    })();
+</script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <link rel="stylesheet" href="../css/reset.css">
+    <!--[if lt IE 9]>
+    <script src="../js/html5.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="../js/zepto.min.js"></script>
+    <script>
+        //移动适配
+        var desW = 750;
+        var winW = document.documentElement.clientWidth;
+        document.documentElement.style.fontSize = winW/desW*100+"px";
+    </script>
+    <style>
+
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+        .background{
+            width: 100%;
+            height: 100%;
+            background: url("../images/图层534@2x.png") no-repeat;
+            background-size: 100% 100%;
+        }
+        .header{
+            height: 1.58rem;
+            color: #fff;
+        }
+        .back{
+            float: left;
+            padding: 0 0.29rem;
+            margin-top: 0.63rem;
+            font-size: 0.4rem;
+            color: #fff;
+        }
+        .focus{
+            float: left;
+            font-size: 0.28rem;
+            margin: 0.68rem 0 0 2rem;
+        }
+        .picture{
+            width: 2.26rem;
+            height: 2.32rem;
+            margin: 0 0.4rem 0.38rem 0.6rem;
+            border-radius: 50%;
+            float: left;
+        }
+        .picture img{
+            width: 100%;
+            height: 100%;
+            background-size: 100% 100%;
+        }
+        .name,.phone{
+            float: left;
+            width: 3rem;
+            line-height: 0.6rem;
+            font-size: 0.32rem;
+        }
+        .user{
+            clear: both;
+            width: 6.62rem;
+            background: #fff;
+            height: 1.66rem;
+            margin: 0 0.46rem;
+            border-radius: 10px;
+        }
+        .user li{
+            float: left;
+            width: 3.29rem;
+            height: 0.96rem;
+            margin: 0.36rem 0;
+        }
+        .icon{
+            width: 0.5rem;
+            height: 0.5rem;
+            float: left;
+            margin-left: 0.6rem;
+        }
+        .icon img{
+            width: 100%;
+            height: 100%;
+            background-size: 100% 100%;
+        }
+        .text ,.power{
+            color: #8f9ca4;
+            font-size: 0.2rem;
+            margin-left: 1.2rem;
+        }
+        .number ,.digit{
+            font-size: 0.24rem;
+            margin-left: 1.2rem;
+        }
+        .advertising{
+            width: 6.8rem;
+            height: 3.08rem;
+            margin: 0.28rem 0.4rem;
+            background: url("../images/生态底图@2x.png") no-repeat;
+            background-size: 100% 100%;
+        }
+        .introduce{
+            color: #fff;
+            height: 1.1rem;
+            font-size: 0.28rem;
+            line-height: 1.1rem;
+            margin-left: 0.62rem;
+        }
+        .footer{
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            height: 1rem;
+            background: #fff;
+            border-top: 1px solid #ddd;
+        }
+        .community{
+            float: left;
+            margin-top: 0.05rem;
+            width: 49%;
+            cursor: pointer
+        }
+        .community div{
+            width: 0.6rem;
+            height: 0.6rem;
+            margin: 0 41%;
+        }
+        .community div img{
+            width: 100%;
+            height: 100%;
+            background-size: 100% 100%;
+        }
+        .community span{
+            float: left;
+            width: 100%;
+            font-size: 0.2rem;
+            text-align: center;
+        }
+        .gray{
+            color: #919ba4;
+        }
+        .blue{
+            color: #329de1;
+        }
+    </style>
+</head>
+<body>
+<div class="background">
+    <div class="header">
+        <a href="javascript:history.go(-1)" class="back"> < </a>
+        <span class="focus">Minte星球</span>
+    </div>
+    <div class="picture"><img src="../images/picture@2x.png"></div>
+    <span class="name" style="margin-top: 1rem; font-weight: 600;"></span>
+   <!-- <span class="phone" style="color: #cfd4d7;">186XXXX1021</span>-->
+
+    <ul class="user">
+        <li class="energy" style="border-right: 1px solid #ccc;">
+            <div class="icon"><img src="../images/个人中心能量@2x.png"></div>
+            <p class="text">能量数量</p>
+            <p class="number">999.999</p>
+        </li>
+        <li class="mypower">
+            <div class="icon"><img src="../images/个人中心算力@2x.png"></div>
+            <p class="power">我的算力</p>
+            <p class="digit">999.999</p>
+        </li>
+    </ul>
+    <div class="advertising">
+        <p class="introduce">MinteBit生态介绍</p>
+    </div>
+
+    <ul class="footer">
+        <li class="community" id="agency" style="border-right: 1px solid #ccc;">
+            <div>
+                <img src="../images/社区@2x副本.png">
+            </div>
+            <span class="gray">MI社区</span>
+        </li>
+        <li class="community">
+            <div>
+                <img src="../images/人头拷贝2@2x.png">
+            </div>
+            <span class="blue">我的</span>
+        </li>
+    </ul>
+
+</div>
+</body>
+</html>
+<script>
+
+    // 判断是否是浏览器
+    var ua = window.navigator.userAgent.toLowerCase();
+    if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+        $('.header').hide();
+    }
+
+    (function () {
+        $.ajax({
+            type: 'GET',
+            url: '/user/getinfo',
+            data:{},
+            dataType: 'json',
+            success: function(data){
+                 //console.log(data);
+                if(data.ret =='1'){  // 成功
+                    $('.name').text(data.data.phone);
+                    $('.number').text(data.data.coin_total);
+                    $('.digit').text(data.data.coin_power);
+                }else{
+                    alert(data.msg);
+                }
+            },
+            error: function(data){
+                alert('接口发送失败！')
+            }
+        })
+    })();
+
+    // MI社区
+    $('#agency').on('click',function () {
+        window.location.href="./index.html";
+    });
+    // 能量数量
+    $('.energy').on('click',function () {
+        window.location.href="./count.html";
+    });
+    // 我的算力
+    $('.mypower').on('click',function () {
+        window.location.href="./record.html";
+    });
+</script>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>M客服</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./style.css"/>
+    <!--[if lt IE 9]>
+    <script src="../js/html5.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="../js/zepto.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.qrcode.js"></script>
+    <script type="text/javascript" src="tn_code.js"></script>
+    <script>
+        //移动适配
+        var desW = 640;
+        var winW = document.documentElement.clientWidth;
+        document.documentElement.style.fontSize = winW/desW*100+"px";
+    </script>
+    <style>
+        .header{
+            height: 1.3rem;
+            text-align: center;
+            line-height: 1.3rem;
+            color: #919ba4;
+            font-size: 14px;
+        }
+        .line{
+            height: 0.3rem;
+            background: #f8f8f8;
+        }
+        .attention{
+            height: 0.8rem;
+            color: #919ba4;
+            font-size: 16px;
+            line-height: 0.8rem;
+            text-align: center;
+        }
+        #code{
+            height: 3rem;
+            width: 3rem;
+            margin: 0 auto;
+            background: #e5e5e5;
+        }
+        .message{
+            color: #919ba4;
+            font-size: 16px;
+            text-align: center;
+            margin-top: 0.2rem;
+        }
+        canvas{
+            width: 3rem;
+            height: 3rem;
+        }
+    </style>
+</head>
+<body>
+<div class="header">M客服</div>
+<p class="line"></p>
+<p class="attention">MinBit</p>
+<div id="code">
+
+</div>
+<p class="message">扫码关注MinBit公众号<br>给客服MM留言</p>
+
+</body>
+</html>
+<script>
+    $('#code').qrcode("http://www.helloweba.net"); //任意字符串
+</script>

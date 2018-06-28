@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实名认证</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <link rel="stylesheet" href="../css/reset.css">
+    <!--[if lt IE 9]>
+    <script src="../js/html5.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="../js/zepto.min.js"></script>
+    <script>
+        //移动适配
+        var desW = 640;
+        var winW = document.documentElement.clientWidth;
+        document.documentElement.style.fontSize = winW/desW*100+"px";
+    </script>
+    <style>
+        .header{
+            height: 1rem;
+            text-align: center;
+            line-height: 1.3rem;
+            color: #919ba4;
+            font-size: 14px;
+        }
+        .line{
+            height: 0.3rem;
+            background: #f8f8f8;
+        }
+        .text{
+            font-size: 20px;
+            padding: 0.3rem;
+        }
+        .record{
+            border-bottom: 1px solid #ccc;
+            height: 0.8rem;
+            line-height: 0.8rem;
+            font-size: 18px;
+            padding-left: 0.3rem;
+        }
+        .mode{
+            margin-left: 0.3rem;
+            overflow: auto;
+            height: 0.8rem;
+            font-size: 18px;
+            line-height: 0.8rem;
+            border-bottom: 1px solid #ccc;
+        }
+        .left{
+            float: left;
+            width: 25%;
+        }
+        input[type="text"]{
+            height: 0.8rem;
+            line-height: 0.8rem;
+            border: none;
+            text-align: right;
+        }
+        .footer{
+            margin: 0.5rem 0.3rem;
+            width: 90%;
+            height: 1rem;
+            color: #fff;
+            border: none;
+            text-align: center;
+            line-height: 1rem;
+            border-radius: 3px;
+            font-size: 18px;
+            cursor: pointer;
+            background:-webkit-linear-gradient(left,#7178fc,#5fc8f8);/* Safari 5.1 - 6.0 */
+            background:-o-linear-gradient(right,#7178fc,#5fc8f8);/* Opera 11.1 - 12.0 */
+            background:-moz-linear-gradient(right,#7178fc,#5fc8f8);/* Firefox 3.6 - 15 */
+            background:linear-gradient(to right,#7178fc,#5fc8f8);/* 标准*/
+        }
+        .footer:disabled{
+            background: buttonface;
+        }
+    </style>
+</head>
+<body>
+<div class="header">实名认证</div>
+<p class="line"></p>
+<p class="text">为了资产安全，需要实名认证，此举用于认证，我们不会泄露您的隐私</p>
+<p class="line"></p>
+<p class="record">用户实名认证，算力+10</p>
+<ul class="category">
+    <li class="mode">
+        <div class="left">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:</div>
+       <input type="text" placeholder="请输入姓名" class="name">
+    </li>
+    <li class="mode">
+        <div class="left">证件类型:</div>
+        <input type="text" placeholder="身份证" class="type">
+    </li>
+    <li class="mode">
+        <div class="left">证件号码:</div>
+        <input type="text" placeholder="请输入证件号码" class="number">
+    </li>
+</ul>
+<input type="button" class="footer" disabled value="提交">
+</body>
+</html>
+<script>
+
+    // 提交
+    $('.footer').on('click',function () {
+        window.location.href="./index.html";
+    });
+
+</script>

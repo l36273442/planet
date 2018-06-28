@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>关注微信公众号</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <link rel="stylesheet" href="../css/reset.css">
+    <!--[if lt IE 9]>
+    <script src="../js/html5.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="../js/zepto.min.js"></script>
+    <script>
+        //移动适配
+        var desW = 750;
+        var winW = document.documentElement.clientWidth;
+        document.documentElement.style.fontSize = winW/desW*100+"px";
+    </script>
+    <style>
+
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+        .background{
+            width: 100%;
+            height: 100%;
+            background: url("../images/图层2@2x.png") no-repeat;
+            background-size: 100% 100%;
+        }
+        .header{
+            height:1.45rem;
+            color: #fff;
+        }
+        .back{
+            float: left;
+            padding:0 0.29rem;
+            margin-top: 0.55rem;
+            font-size: 26px;
+            color: #fff;
+        }
+        .focus{
+            float: left;
+            font-size: 0.28rem;
+            margin: 0.68rem 0 0 1.87rem;
+        }
+        .text{
+            font-size: 0.28rem;
+            color: #fffeff;
+            text-align: center;
+            line-height: 0.5rem;
+        }
+        .mode{
+            font-size: 0.26rem;
+            color: #fff;
+            text-align: left;
+            margin: 0.2rem 0.87rem 0.1rem;
+            line-height: 0.74rem;
+        }
+        .dashed{
+            margin: 0 0.87rem;
+            border-bottom: 1px dashed #fffeff;
+        }
+        .only{
+            color:#adbbea;
+            font-size: 0.26rem;
+            line-height: 1rem;
+            text-align: center;
+        }
+        .verify{
+            text-align: center;
+            color: #212129;
+            font-size: 0.26rem;
+            line-height: 1.5rem;
+        }
+        .import{
+            border: none;
+            background: none;
+            height: 0.58rem;
+            border-bottom: 1px solid #ccc;
+            line-height: 0.58rem;
+            margin: 0 0.87rem;
+            font-size: 0.24rem;
+            color: #20212a;
+            text-align: center;
+            width: 5.72rem;
+        }
+        .footer{
+            margin-left: 0.5rem;
+            width: 6.68rem;
+            height: 0.9rem;
+            color: #fff;
+            border: none;
+            text-align: center;
+            line-height: 0.9rem;
+            border-radius: 3px;
+            font-size: 0.28rem;
+            cursor: pointer;
+            background:-webkit-linear-gradient(left,#7178fc,#5fc8f8);/* Safari 5.1 - 6.0 */
+            background:-o-linear-gradient(right,#7178fc,#5fc8f8);/* Opera 11.1 - 12.0 */
+            background:-moz-linear-gradient(right,#7178fc,#5fc8f8);/* Firefox 3.6 - 15 */
+            background:linear-gradient(to right,#7178fc,#5fc8f8);/* 标准*/
+        }
+        .footer:disabled{
+            background: #999999;
+        }
+    </style>
+</head>
+<body>
+<div class="background">
+    <div class="header">
+        <a href="javascript:history.go(-1)" class="back"> < </a>
+        <span class="focus">关注微信公众号</span>
+    </div>
+    <p class="text" >按照如下步骤关注微信公众号<br/>算力 +10</p>
+    <div class="mode">
+        <p>1.在微信公众号搜索 ”麦恩比特“ 并关注</p>
+        <p>2.输入 ”领取算力“ 获得验证码</p>
+        <p>3.在下方输入验证码</p>
+    </div>
+    <p class="dashed"></p>
+    <p class="only">说明 : 每个星球账号仅有一次领取机会</p>
+    <p class="verify">请输入8位验证码</p>
+    <input type="text" class="import">
+    <input type="button" class="footer" disabled value="确定">
+</div>
+</body>
+</html>
+<script>
+
+    // 判断是否是浏览器
+    var ua = window.navigator.userAgent.toLowerCase();
+    if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+        //$('.header').hide();
+        $('.back').hide();
+        $('.focus').hide();
+    }
+
+    // 验证码不为空
+    let  reg = /^[a-zA-z0-9]{8}$/;
+    $('.import').on('input',function (){
+        if(this.value){
+            if (reg.test(this.value)){ // 验证码不为空
+                $('.footer').removeAttr("disabled");
+            }else {
+                $('.footer').attr("disabled",true);
+            }
+        }else {
+            $('.footer').attr("disabled",true);
+        }
+    });
+
+    // 确认
+    $('.footer').on('click',function () {
+        var code  = $('.import').val();
+        $.ajax({
+            type: 'POST',
+            url: '/user/getattentionpower',
+            data:{code: code},
+            dataType: 'json',
+            success: function(data){
+                if(data.ret == '1'){ // 提交成功
+                    alert('提交成功，算力+10');
+                   // $('.footer').css('display','none');
+                    location.reload();
+                }else{
+                    alert(data.msg)
+                }
+            },
+            error: function(data){
+                alert('提交失败！')
+            }
+        });
+    })
+
+</script>

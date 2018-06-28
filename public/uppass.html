@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改密码</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./style.css"/>
+    <!--[if lt IE 9]>
+    <script src="../js/html5.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="../js/zepto.min.js"></script>
+    <script type="text/javascript" src="tn_code.js"></script>
+    <script>
+        //移动适配
+        var desW = 750;
+        var winW = document.documentElement.clientWidth;
+        document.documentElement.style.fontSize = winW/desW*100+"px";
+    </script>
+    <style>
+        .header{
+            height: 0.94rem;
+            line-height: 0.94rem;
+            text-align: center;
+            color: #b0b7bd;
+            margin-top: 0.34rem;
+            font-size: 0.28rem;
+        }
+        .line{
+            height: 0.2rem;
+            background: #f8f8f8;
+        }
+        .advertising{
+            height: 2.32rem;
+            width: 4.8rem;
+            margin: 0.6rem 1.35rem 0.22rem;
+        }
+        .advertising img{
+            width: 100%;
+            height: 100%;
+            background-size: 100% 100%;
+        }
+        .phone{
+            border-bottom: 1px solid #ccc;
+            margin: 0 0.4rem;
+            width: 6.68rem;
+            height: 0.87rem;
+            line-height: 0.87rem;
+            color: #b0b7bd;
+            position: relative;
+        }
+        .area,.verifcationCode{
+            float: left;
+            height: 100%;
+            width: 1.3rem;
+            cursor: pointer;
+        }
+        .area li{
+            display: none;
+        }
+        .area:hover li{
+            display: block;
+        }
+        .triangle_border_down{
+            width: 0;
+            height: 0;
+            border-width: 8px 8px 0;
+            border-style: solid;
+            border-color: #919ba4 transparent transparent;
+            position: absolute;
+            left: 0.8rem;
+            top: 0.4rem;
+        }
+        input[type="text"]{
+            width: 2.5rem;
+            border: none;
+            font-size: 0.28rem;
+            color: #20212a;
+            padding-left: 0.1rem;
+        }
+        input[type="password"]{
+            width: 3.8rem;
+            border: none;
+            font-size: 0.28rem;
+            color: #20212a;
+            padding-left: 0.1rem;
+        }
+        .error{
+            font-size: 16px;
+            cursor: pointer;
+            position: absolute;
+            right: 0.47rem;
+        }
+        .tncode{
+            width: 1.5rem;
+            height: 0.5rem;
+            line-height: 0.5rem;
+            border-radius: 3px;
+            background: none;
+            border: 1px solid #ccc;
+            text-align: center;
+            position: absolute;
+            right: 0.12rem;
+            bottom: 0.2rem;
+            font-size: 0.22rem;
+            color: #919ba4;
+        }
+        .footer{
+            margin: 0.42rem 0 0 0.5rem;
+            width: 6.68rem;
+            height: 0.9rem;
+            color: #fff;
+            border: none;
+            text-align: center;
+            line-height: 0.9rem;
+            border-radius: 3px;
+            font-size: 0.28rem;
+            cursor: pointer;
+            background:-webkit-linear-gradient(left,#7178fc,#5fc8f8);/* Safari 5.1 - 6.0 */
+            background:-o-linear-gradient(right,#7178fc,#5fc8f8);/* Opera 11.1 - 12.0 */
+            background:-moz-linear-gradient(right,#7178fc,#5fc8f8);/* Firefox 3.6 - 15 */
+            background:linear-gradient(to right,#7178fc,#5fc8f8);/* 标准*/
+        }
+        .footer:disabled{
+              background: buttonface;
+          }
+        .mask{
+            width: 1.5rem;
+            height: 0.5rem;
+            position: absolute;
+            background: transparent;
+            right: 0.12rem;
+            bottom: 0.2rem;
+        }
+        .newUser{
+            color: #919ba4;
+            font-size: 0.26rem;
+            float: right;
+            line-height: 0.88rem;
+            margin-right: 0.5rem;
+        }
+        .passwordLogin{
+            text-align: center;
+            height: 1.6rem;
+            clear: both;
+            line-height: 1.6rem;
+            margin-top: 4rem;
+            color: #919ba4;
+            display: block;
+            font-size: 0.28rem;
+        }
+
+        .advertisingSpace{
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            background: rgba(0,0,0,0.7);
+            left: 0;
+            top: 0;
+            display: none;
+        }
+        .base{
+            width: 6rem;
+            height: 9.3rem;
+            margin: 1.5rem auto;
+        }
+        .base img{
+            width: 100%;
+            height: 100%;
+            background-size: 100% 100%;
+        }
+        .window{
+            width: 5.6rem;
+            height: 6.7rem;
+            z-index: 2;
+            position: absolute;
+           /* top: 3.8rem;*/
+            top:3.8rem;
+            left: 0.95rem;
+            border: 1px solid #ccc;
+        }
+       .window img{
+            width: 100%;
+            height: 100%;
+            background-size: 100% 100%;
+        }
+        .close{
+            position: absolute;
+            bottom: 0.3rem;
+            left: 3.4rem;
+            width: 0.72rem;
+            height: 0.68rem;
+            border-radius: 50%;
+        }
+        .close img{
+            width: 100%;
+            height: 100%;
+            background-size: 100% 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="header">修改密码</div>
+<p class="line"></p>
+<div class="advertising">
+    <img src="../images/星球图片@2x.png" alt="星球图片">
+</div>
+<div class="phone">
+    <ul class="area"> +86
+     <!--   <li> +86 </li>
+        <li> +16 </li>
+        <li> +... </li>-->
+    </ul>
+    <span class="triangle_border_down"></span>
+    <input type="text" class="telephone" placeholder="请输入手机号码">
+    <span class="error">X</span>
+</div>
+<div class="phone verifcation">
+    <span class="verifcationCode">密码</span>
+    <input type="password" class="password" placeholder="6-16位，必须包括数字和字符">
+</div>
+<div class="phone verifcation">
+    <span class="verifcationCode">验证码</span>
+    <input type="text" class="sms_code" placeholder="请输入验证码">
+    <input type="button" class="tncode" value="发送验证码" disabled>
+    <span class="mask"></span>
+</div>
+<input type="button" class="footer" disabled value="登录">
+<a href="./registered.html" class="newUser">新用户注册</a>
+<a href="./passwordlogin.html" class="passwordLogin">密码登录</a>
+
+<!-- 广告遮罩 -->
+<div class="advertisingSpace">
+    <div class="base">
+        <img src="../images/广告位底图@2x.png">
+        <div class="window">
+
+        </div>
+    </div>
+    <p class="close">
+        <img src="../images/关闭-5@2x.png">
+    </p>
+</div>
+</body>
+</html>
+<script>
+    // 判断是否是浏览器
+    var ua = window.navigator.userAgent.toLowerCase();
+    if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+        $('.header').hide();
+        $('.line').hide();
+    }
+
+
+    // 发送验证码
+    let  reg = /^1\d{10}$/;
+    let  reg2 = /^\d{6}$/;
+    $('.telephone').on('input',function (){
+        if(this.value){
+            if (reg.test(this.value)){ // 11位数字
+                $('.tncode').removeAttr("disabled");
+                $('.mask').css("display",'none');
+                //$('.send').addClass("tncode");
+            }else {
+                $('.send').attr("disabled",true);
+                $('.send').removeClass("tncode");
+            }
+        }else {
+            $('.send').attr("disabled",true);
+            $('.send').removeClass("tncode");
+        }
+    });
+    $('.sms_code').on('input',function (){
+        if(this.value){
+            if (reg2.test(this.value)){ // 验证码不为空
+                $('.footer').removeAttr("disabled");
+            }else {
+                $('.footer').attr("disabled",true);
+            }
+        }else {
+            $('.footer').attr("disabled",true);
+        }
+    });
+
+
+        $TN.onsuccess(function(){//验证通过
+            let phone = $('.telephone').val();
+            $.ajax({
+                type: 'POST',
+                url: '/sms/sendsmscode',
+                data:{country_code:86,mobile: phone},
+                dataType: 'json',
+                success: function(data){
+                    // {"ret":0,"msg":"slider verification failed(2000)","errCode":2000}
+                    if(data.ret =='0'){
+                        alert(data.msg);
+                    }else{
+                        alert('验证码已发送！');
+                    }
+                },
+                error: function(data){
+                    alert('发送失败！')
+                }
+            })
+        });
+
+
+    // 删除
+    $('.error').on('click',function () {
+        $('.telephone').val('');
+    });
+
+    // 登录
+    $('.footer').on('click',function () {
+        var phone = $('.telephone').val();
+        var password = $('.password').val();
+        var sms_code  = $('.sms_code').val();
+        $.ajax({
+            type: 'POST',
+            url: '/pass/douppass',
+            data:{country_code:86,mobile: phone,sms_code:sms_code,password:password},
+            dataType: 'json',
+            success: function(data){
+                //console.log(JSON.stringify(data));
+                // {"ret":0,"msg":"Please enter the image verification code(2001)","errCode":2001}
+                if(data.ret == '1'){ // 登录成功
+                    window.location.href="./passwordlogin.html";
+                }else{
+                    alert(data.msg)
+                }
+            },
+            error: function(data){
+                alert('发送失败！')
+            }
+        });
+    });
+
+
+</script>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Minte邀请码</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <link rel="stylesheet" href="../css/reset.css">
+    <!--[if lt IE 9]>
+    <script src="../js/html5.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="../js/zepto.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.qrcode.js"></script>
+    <script>
+        //移动适配
+        var desW = 750;
+        var winW = document.documentElement.clientWidth;
+        document.documentElement.style.fontSize = winW/desW*100+"px";
+    </script>
+    <style>
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+        .background{
+            width: 100%;
+            height: 100%;
+            background: url("../images/秘籍@2x.png") no-repeat;
+            background-size: 100% 100%;
+        }
+        .header{
+            height: 1.26rem;
+            color: #fff;
+        }
+        .back{
+            float: left;
+            padding: 0 0.29rem;
+            margin-top: 0.63rem;
+            font-size: 0.4rem;
+            color: #fff;
+        }
+        .focus{
+            float: left;
+            font-size: 0.28rem;
+            margin: 0.64rem 0 0 2rem;
+        }
+        .random{
+            height: 0.96rem;
+            line-height: 0.96rem;
+            text-align: center;
+            font-size: 0.96rem;
+            margin: 1rem 0 0.34rem;
+            font-weight: 600;
+        }
+        #input{
+            position: absolute;
+            left: 2.1rem;
+            width: 3.2rem;
+            height: 1rem;
+            top: 2.3rem;
+            z-index: -10;
+        }
+        .copy{
+            text-align: center;
+            font-size: 0.28rem;
+            color: #fff;
+            width: 2.84rem;
+            border-radius: 5px;
+            height: 0.58rem;
+            line-height: 0.58rem;
+            margin: 0 auto;
+            cursor: pointer;
+            background:-webkit-linear-gradient(left,#7178fc,#5fc8f8);/* Safari 5.1 - 6.0 */
+            background:-o-linear-gradient(right,#7178fc,#5fc8f8);/* Opera 11.1 - 12.0 */
+            background:-moz-linear-gradient(right,#7178fc,#5fc8f8);/* Firefox 3.6 - 15 */
+            background:linear-gradient(to right,#7178fc,#5fc8f8);/* 标准*/
+        }
+        .invite{
+            color: #333;
+            width: 100%;
+            height: 0.6rem;
+            text-align: center;
+            line-height: 0.6rem;
+            font-size: 16px;
+        }
+        .count,.userInvite span{
+            font-size: 0.24rem;
+            display: inline-block;
+            width: 0.4rem;
+        }
+        .userInvite{
+            width: 2.5rem;
+            height: 0.4rem;
+            margin: 0 auto;
+            line-height: 0.4rem;
+            color: #d27c17;
+            text-align: center;
+            border-radius: 5px;
+            background: #fff2cf;
+        }
+        #code{
+            width: 2.16rem;
+            height: 2.2rem;
+            margin: 0 auto;
+        }
+        canvas{
+            width: 2.16rem;
+            height: 2.2rem;
+        }
+        .face{
+            color: #8f9ca5;
+            text-align: center;
+            height: 0.66rem;
+            line-height: 0.66rem;
+            font-size: 0.24rem;
+        }
+        .semiCircle{
+            float: left;
+            width: 0.6rem;
+            height: 0.6rem;
+            background: #f5f5f5;
+            border-radius: 50%;
+            margin-left: 0.2rem;
+        }
+        .dashed{
+            height: 0.25rem;
+            width: 4.5rem;
+            margin: 0 auto;
+            border-bottom: 1px dashed #ddd;
+        }
+        .myInvitation{
+            clear: both;
+            width: 100%;
+            text-align: center;
+            height: 0.6rem;
+            line-height: 0.6rem;
+            font-size: 14px;
+            color: #8f9ca5;
+        }
+        .rankingBg {
+            width: 5rem;
+            overflow: auto;
+            margin: 0 auto;
+        }
+        .rank{
+            float: left;
+            width: 33.3%;
+            height: 0.5rem;
+            line-height: 0.5rem;
+            font-size: 0.28rem;
+            color: #8f9ca5;
+            text-align: center;
+        }
+        .ranking{
+            width: 5rem;
+            margin: 0 auto;
+            padding-bottom: 0.3rem;
+        }
+        .result{
+            height: 0.86rem;
+            line-height: 0.86rem;
+            font-size: 0.24rem;
+            border-bottom: 1px solid #ddd;
+        }
+        .result span{
+            width: 33.3%;
+            float: left;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="background">
+    <div class="header">
+        <a href="javascript:history.go(-1)" class="back"> < </a>
+        <span class="focus">Minte邀请码</span>
+    </div>
+    <div class="random" id="random"></div>
+    <textarea id="input"></textarea>
+    <p class="copy" onclick="copyText()">复制</p>
+    <p class="invite">剩余邀请码<span class="count"></span>次</p>
+    <p class="userInvite">您的邀请码总数<span></span>次</p>
+    <p class="copy share" style="margin: 0.32rem auto 0.46rem;">生成邀请码</p>
+    <div id="code"></div>
+    <p class="face">面对面扫码</p>
+
+    <span class="semiCircle"></span>
+    <span class="semiCircle" style="float: right; margin-right: 0.2rem;"></span>
+    <p class="dashed"></p>
+    <p class="myInvitation">我的邀请好友</p>
+    <p class="rankingBg">
+        <span class="rank">名次</span>
+        <span class="rank">能量</span>
+        <span class="rank">算力</span>
+    </p>
+    <ul class="ranking">
+        <!--<li class="result">
+            <span>区块链王阿姨</span>
+            <span>99.99</span>
+            <span>99.99</span>
+        </li>
+        <li class="result">
+            <span>区块链王阿姨</span>
+            <span>99.99</span>
+            <span>99.99</span>
+        </li>
+        <li class="result">
+        <span>区块链王阿姨</span>
+        <span>99.99</span>
+        <span>99.99</span>
+    </li>
+        <li class="result">
+            <span>区块链王阿姨</span>
+            <span>99.99</span>
+            <span>99.99</span>
+        </li>-->
+    </ul>
+</div>
+</body>
+</html>
+<script>
+
+    // 判断是否是浏览器
+    var ua = window.navigator.userAgent.toLowerCase();
+    if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+        // $('.header').hide();
+        $('.back').hide();
+        $('.focus').hide();
+    }
+
+    // 复制邀请码
+    function copyText() {
+        var text = document.getElementById("random").innerText;
+        var input = document.getElementById("input");
+        input.value = text; // 修改文本框的内容
+        input.select(); // 选中文本
+        document.execCommand("copy"); // 执行浏览器复制命令
+        alert("复制成功");
+    }
+
+    (function () {
+        $.ajax({
+            type: 'GET',
+            url: '/user/getmyinvite',
+            data:{},
+            dataType: 'json',
+            success: function(data){
+               // console.log(data);
+                if(data.ret =='1'){  // 成功
+                    $('#random').text(data.data.invite_code);
+                    $('.count').text(data.data.invite_lave_sum);
+                    $('.userInvite span').text(data.data.invite_max_sum);
+                    $('#code').qrcode(data.data.inviter_register_url);  // 二维码
+                    if(data.data.invite_list){
+                        $.each(data.data.invite_list, function(index, item){
+                            //console.log(item);
+                            $('.ranking').append(` <li class="result">
+                                                           <span>${item.phone}</span>
+                                                           <span>${item.coin_total}</span>
+                                                           <span>${item.coin_power}</span>
+                                                       </li>`)
+                           })
+                    }else{
+                        return false;
+                    }
+                }else{
+                    alert(data.msg);
+                }
+            },
+            error: function(data){
+                alert('接口发送失败！')
+            }
+        })
+    })();
+
+    // 生成邀请码
+    $('.share').on('click',function () {
+        window.location.href="./card.html";
+    });
+
+</script>

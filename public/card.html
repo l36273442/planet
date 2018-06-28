@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Minte邀请码卡</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <link rel="stylesheet" href="../css/reset.css">
+    <!--[if lt IE 9]>
+    <script src="../js/html5.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="../js/zepto.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.qrcode.js"></script>
+    <script>
+        //移动适配
+        var desW = 640;
+        var winW = document.documentElement.clientWidth;
+        document.documentElement.style.fontSize = winW/desW*100+"px";
+    </script>
+    <style>
+        .background{
+            width: 100%;
+            background: url("../images/秘籍@2x.png") no-repeat;
+            background-size: 100% 100%;
+        }
+        .header{
+            height: 1.26rem;
+            line-height: 1.46rem;
+            color: #fff;
+            font-size: 0.28rem;
+            text-align: center;
+        }
+        .picture{
+            width: 2.34rem;
+            height: 2.4rem;
+            margin: 0.38rem auto 0;
+            border-radius: 50%;
+        }
+        .picture img{
+            width: 100%;
+            height: 100%;
+            background-size: 100% 100%;
+        }
+        .user{
+            height: 0.6rem;
+            line-height: 0.6rem;
+            text-align: center;
+            font-size: 0.28rem;
+        }
+        .text{
+            text-align: center;
+            color: #21212b;
+            height: 0.42rem;
+            font-size: 0.26rem;
+            line-height: 0.42rem;
+        }
+        .yard{
+            text-align: center;
+            font-size: 0.28rem;
+            line-height: 0.78rem;
+        }
+        .random{
+            text-align: center;
+            font-size: 1.08rem;
+            font-weight: 600;
+        }
+        .semiCircle{
+            float: left;
+            width: 0.6rem;
+            height: 0.6rem;
+            background: #f5f5f5;
+            border-radius: 50%;
+            margin-left: 0.2rem;
+        }
+        .dashed{
+            height: 0.25rem;
+            width: 4.5rem;
+            margin: 0 auto;
+            border-bottom: 1px dashed #ddd;
+        }
+        #code{
+            clear: both;
+            height: 2.56rem;
+            width: 2.56rem;
+            margin: 0.26rem auto 0;
+        }
+        canvas{
+            height: 2.56rem;
+            width: 2.56rem;
+        }
+        .face{
+            color: #8f9ca5;
+            text-align: center;
+            line-height: 0.8rem;
+            font-size: 0.2rem;
+        }
+    </style>
+</head>
+<body>
+<div class="background">
+    <div class="header">Minte邀请码卡</div>
+    <div class="picture"><img src="../images/picture@2x.png"></div>
+    <h5 class="user">皮卡多</h5>
+    <p class="text">邀请你加入 MineBit</p>
+    <p class="text">注册送能量，每天挖矿得能量</p>
+    <p class="yard">邀请码</p>
+    <div class="random" id="random">2ERG</div>
+
+    <span class="semiCircle"></span>
+    <span class="semiCircle" style="float: right; margin-right: 0.2rem;"></span>
+    <p class="dashed"></p>
+
+    <div id="code"></div>
+    <p class="face">扫码加入MineBit星球</p>
+
+</div>
+</body>
+</html>
+<script>
+
+    // 判断是否是浏览器
+    var ua = window.navigator.userAgent.toLowerCase();
+    if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+        $('.header').hide();
+        $('.picture').css('marginTop','0');
+    }
+
+    (function () {
+        $.ajax({
+            type: 'GET',
+            url: '/user/getmyinvite',
+            data:{},
+            dataType: 'json',
+            success: function(data){
+                // console.log(data);
+                if(data.ret =='1'){  // 成功
+                    $('#random').text(data.data.invite_code);
+                    $('#code').qrcode(data.data.inviter_register_url);  // 二维码
+                }else{
+                    alert(data.msg);
+                }
+            },
+            error: function(data){
+                alert('接口发送失败！')
+            }
+        })
+    })();
+</script>

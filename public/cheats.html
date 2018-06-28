@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>秘籍</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <link rel="stylesheet" href="../css/reset.css">
+    <!--[if lt IE 9]>
+    <script src="../js/html5.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="../js/zepto.min.js"></script>
+    <script>
+        //移动适配
+        var desW = 640;
+        var winW = document.documentElement.clientWidth;
+        document.documentElement.style.fontSize = winW/desW*100+"px";
+    </script>
+    <style>
+        html,body,.background{
+            height: 100%;
+            width: 100%;
+            background: url("../images/秘籍@2x.png") no-repeat;
+            background-size: 100% 100%;
+        }
+        .header{
+            height: 1.28rem;
+            color: #fff;
+        }
+        .back{
+            float: left;
+            padding: 0 0.29rem;
+            margin-top: 0.42rem;
+            font-size: 0.4rem;
+            color: #fff;
+        }
+        .focus{
+            float: left;
+            font-size: 0.28rem;
+            line-height: 1.28rem;
+            margin-left: 2rem;
+        }
+        .textWrap{
+            padding: 0.3rem 0.75rem;
+
+        }
+        .title{
+            font-size: 0.24rem;
+            color: #919ba4;
+            font-weight: 600;
+            line-height: 0.4rem;
+        }
+        .content,.bold{
+            font-size: 0.24rem;
+            color: #909aa3;
+            line-height: 0.36rem;
+        }
+        .bold{
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+<div class="background">
+    <div class="header">
+        <a href="javascript:history.go(-1)" class="back"> < </a>
+        <span class="focus">秘籍</span>
+    </div>
+    <div class="textWrap">
+        <p class="title"> 一、什么是黑钻？</p>
+        <span class="content">黑钻是用户在星球活动产生的奖励，黑钻对应MineBit交易所的MM币，可以用于抵扣MineBit交易所的交易手续费、投票消耗、上币消耗、以及商品兑换等</span>
+        <p class="title"> 二、什么是算力？</p>
+        <span class="content">算力是获取黑钻的影响因子，同一时间段内，算力越高，
+获得的黑钻越多。</span>
+        <p class="bold">算力是获取黑钻的影响因子，同一时间段内，算力越高，获得的黑钻越多。</p>
+        <p class="title">三、如何提升算力？</p>
+        <span class="content">1.邀请好友: 邀请1位好友，算力+10 <br/>
+                              2.每日登录: 每日登录，算力+1 <br/>
+                              3.实名认证: 用户实名认证，算力+10 <br/>
+                              4.关注微信公众号: 用户关注“MineBit麦恩比特”公众号，算力+10<br/>
+                              5.填写ETH地址: 用户填写ETH地址，算力+10
+        </span>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    // 判断是否是浏览器
+    var ua = window.navigator.userAgent.toLowerCase();
+    if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+       // $('.header').hide();
+        $('.back').hide();
+        $('.focus').hide();
+    }
+</script>

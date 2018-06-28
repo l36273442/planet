@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>活动</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <link rel="stylesheet" href="../css/reset.css">
+    <!--[if lt IE 9]>
+    <script src="../js/html5.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="../js/zepto.min.js"></script>
+    <script>
+        //移动适配
+        var desW = 750;
+        var winW = document.documentElement.clientWidth;
+        document.documentElement.style.fontSize = winW/desW*100+"px";
+    </script>
+    <style>
+        .header{
+            height: 1.28rem;
+            color: #909ba4;
+        }
+        .back{
+            float: left;
+            color: #909ba4;
+            padding: 0 0.29rem;
+            margin-top: 0.45rem;
+            font-size: 0.4rem;
+        }
+        .focus{
+            float: left;
+            font-size: 0.28rem;
+            margin: 0.54rem 0 0 1.88rem;
+        }
+        .advertising li{
+            height: 2.4rem;
+            margin-top: 0.18rem;
+        }
+        .advertising li a{
+            width: 100%;
+            height: 100%;
+            display: inline-block;
+        }
+        .advertising li img{
+            width: 100%;
+            height: 100%;
+            background-size: 100% 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <a href="javascript:history.go(-1)" class="back"> < </a>
+    <span class="focus">活动</span>
+</div>
+<ul class="advertising">
+<!--    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>-->
+</ul>
+</body>
+</html>
+<script>
+
+    // 判断是否是浏览器
+    var ua = window.navigator.userAgent.toLowerCase();
+    if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+        $('.header').hide();
+    }
+
+    $.ajax({
+        type: 'GET',
+        url: '/activity/getactivity',
+        data:{},
+        dataType: 'json',
+        success: function(data){
+           // console.log(data.data);
+            if(data.ret =='1'){  // 成功
+                if(data.data){
+                    $.each(data.data, function(index, item){
+                        console.log(item);
+                        $('.advertising').append(`<li><a href=${item.url}><img src=${item.img_url}></a></li>`)
+                    });
+                }
+            }else{
+                alert(data.msg);
+            }
+        },
+        error: function(data){
+            alert('接口发送失败！')
+        }
+    })
+</script>
